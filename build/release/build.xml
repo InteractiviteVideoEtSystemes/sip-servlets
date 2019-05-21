@@ -53,7 +53,7 @@
 	<property name="jboss-5-jdk6.home" value="${release.path}/jboss-jdk6-${jboss-5.version}" />
 	<property name="jboss-5-jdk6.home.temp" value="${release.path}/temp" />
 	<property name="tomcat.home" value="${release.path}/apache-tomcat-${tomcat.version}" />
-	<property name="tomcat7.home" value="${release.path}/apache-tomcat-${tomcat7.version}" />
+	<property name="tomcat7.home" value="${release.path}\apache-tomcat-${tomcat7.version}" />
 	<property name="tomcat8.home" value="${release.path}/apache-tomcat-${tomcat8.version}" />
 	<property name="embjopr.war" value="admin-console.war" />
 	<property name="embjopr.home" value="${release.path}/${embjopr.war}" />
@@ -121,9 +121,11 @@
 			<copy file="${base.path}/server-tomcat-7.xml" tofile="${tomcat7.home}/conf/server.xml" overwrite="yes"/>
 			<copy file="${base.path}/mss-sip-stack.properties" tofile="${tomcat7.home}/conf/mss-sip-stack.properties" />
 			<copy file="${base.path}/tomcat7-context-namespaceaware.xml" tofile="${tomcat7.home}/conf/context-namespaceaware.xml.bak"/>		
-			
+			<echo message="release_path= ${release.path}"/>
+			<echo message="tomcat7_home= ${tomcat7.home}"/>
+			<echo message="dir=${base.path}/../.."/>
 			<exec failonerror="true" executable="${mvn.executable}" dir="${base.path}/../..">
-				<arg line="clean buildnumber:create install -P set-git-hash -DCATALINA_HOME=${tomcat7.home} -P tomcat-7-distro" />
+				<arg line="clean buildnumber:create install -P set-git-hash  -DCATALINA_HOME=$[tomcat7.home} -P tomcat-7-distro"/>
 			</exec>
 			
 			<exec failonerror="true" executable="${mvn.executable}" dir="${base.path}/../../sip-servlets-examples/click-to-call-servlet3">
