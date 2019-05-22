@@ -5,7 +5,7 @@
 	<property name="base.path" location="${ant.file.restcomm.sipservlets.release}/.." />
 	<property name="docs.stage.dir" location="${ant.file.restcomm.sipservlets.release}/../documentation" />
 	
-	<!--property name="mss.release.version" value="3.0.0-SNAPSHOT" /-->
+	<property name="mss.release.version" value="3.0.0-SNAPSHOT" />
 	<property name="mss.release.configurations" value="all,default" />
 	<property name="mss.release.configurations.jboss5" value="all,default" />
 	<property name="mss.release.configurations.jboss5.excluded" value="minimal,standard,web" />
@@ -16,8 +16,8 @@
 	<property name="jboss-5.download.url" value="http://downloads.sourceforge.net/project/jboss/JBoss/JBoss-${jboss-5.version}/jboss-${jboss-5.version}.zip" />	
 	<property name="jboss-5-jdk6.download.url" value="http://downloads.sourceforge.net/project/jboss/JBoss/JBoss-${jboss-5.version}/jboss-${jboss-5.version}-jdk6.zip" />
 	
-	<property name="tomcat.version" value="6.0.35" />
-	<property name="tomcat7.version" value="7.0.64" />
+	<!-- <property name="tomcat.version" value="6.0.35" /> -->
+	<!-- <property name="tomcat7.version" value="7.0.64" /> -->
 	<property name="tomcat8.version" value="8.0.26" />
 	<property name="tomcat.download.url" value="http://archive.apache.org/dist/tomcat/tomcat-6/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip" />
 	<property name="tomcat7.download.url" value="http://archive.apache.org/dist/tomcat/tomcat-7/v${tomcat7.version}/bin/apache-tomcat-${tomcat7.version}.zip" />
@@ -38,8 +38,8 @@
 	<property name="diameter.distro.path" value="${base.path}/mobicents-diameter-jboss-4-${diameter.version}.sar" />
 	<property name="diameter-jboss-5.distro.path" value="${base.path}/mobicents-diameter-jboss-5-${diameter-jboss-5.version}.sar" />
 	
-	<property name="tomcat.distro.zip.path" value="${base.path}/apache-tomcat-${tomcat.version}.zip" />
-	<property name="tomcat7.distro.zip.path" value="${base.path}/apache-tomcat-${tomcat7.version}.zip" />
+	<!-- <property name="tomcat.distro.zip.path" value="${base.path}/apache-tomcat-${tomcat.version}.zip" /> -->
+	<!-- <property name="tomcat7.distro.zip.path" value="${base.path}/apache-tomcat-${tomcat7.version}.zip" /> -->
 	<property name="tomcat8.distro.zip.path" value="${base.path}/apache-tomcat-${tomcat8.version}.zip" />
 	<property name="jboss.distro.zip.path" value="${base.path}/jboss-${jboss.version}.zip" />
 	<property name="jboss-5.distro.zip.path" value="${base.path}/jboss-${jboss-5.version}.zip" />
@@ -52,9 +52,9 @@
 	<property name="jboss-5.home" value="${release.path}/jboss-${jboss-5.version}" />
 	<property name="jboss-5-jdk6.home" value="${release.path}/jboss-jdk6-${jboss-5.version}" />
 	<property name="jboss-5-jdk6.home.temp" value="${release.path}/temp" />
-	<property name="tomcat.home" value="${release.path}/apache-tomcat-${tomcat.version}" />
-	<property name="tomcat7.home" value="${release.path}\apache-tomcat-${tomcat7.version}" />
-	<property name="tomcat8.home" value="${release.path}/apache-tomcat-${tomcat8.version}" />
+	<!-- <property name="tomcat.home" value="${release.path}/apache-tomcat-${tomcat.version}" /> -->
+	<!-- <property name="tomcat7.home" value="${release.path}\apache-tomcat-${tomcat7.version}" /> -->
+	<property name="tomcat8.home" value="${release.path}\apache-tomcat-${tomcat8.version}" />
 	<property name="embjopr.war" value="admin-console.war" />
 	<property name="embjopr.home" value="${release.path}/${embjopr.war}" />
 	<property name="embjopr.home.contents" value="${release.path}/embedded-jopr.war-contents" />
@@ -62,7 +62,7 @@
 	<property name="mss.jopr-plugin-5.url" value="http://repository.jboss.org/nexus/content/groups/public/org/mobicents/servlet/sip/jopr-mobicents-sip-servlets-as-5-plugin/${mss.jopr-plugin-5.version}/jopr-mobicents-sip-servlets-as-5-plugin-${mss.jopr-plugin-5.version}.jar"/>
 	<property name="jopr-jmx-plugin-5.url" value="http://repository.jboss.org/nexus/content/groups/public/org/rhq/rhq-jmx-plugin/1.2.0.GA/rhq-jmx-plugin-1.2.0.GA.jar"/>
 	
-	<condition property="mvn.executable" value="${sys.M2_HOME}\bin\mvn.bat" else="mvn">
+	<condition property="mvn.executable" value="${sys.M2_HOME}\bin\mvn.bat" else="${sys.M2_HOME}\bin\mvn">
 		<os family="windows"/>
 	</condition>
 	
@@ -75,7 +75,8 @@
 	<!-- Release target -->
 	
 	<!--target name="release" depends="clean,build-documentation,release-tomcat7,release-tomcat,release-jboss-5-jdk6,make-src-zip" /-->
-	<target name="release" depends="clean,build-documentation,release-tomcat7,release-tomcat8,make-src-zip" />
+	<!--<target name="release" depends="clean,build-documentation,release-tomcat7,release-tomcat8,make-src-zip" /> -->
+	<target name="release" depends="clean,build-documentation,release-tomcat8,make-src-zip" />
 	<target name="release-MSS-4" depends="clean,build-documentation,release-tomcat8,make-src-zip" />
 	
 	<!-- Tomcat version -->
@@ -112,7 +113,8 @@
 		<antcall target="make-final-zip-tomcat" />
 	</target-->
 	
-	<target name="release-tomcat7" depends="extract-tomcat7">
+	<!-- <target name="release-tomcat7" depends="extract-tomcat7">
+			<echo message="release-tomcat7"/>
 			<copy file="TOMCAT-SIP-SERVLETS-README.txt" todir="${tomcat7.home}" />
 			
 			<mkdir dir="${tomcat7.home}/conf/dars"/>
@@ -121,9 +123,7 @@
 			<copy file="${base.path}/server-tomcat-7.xml" tofile="${tomcat7.home}/conf/server.xml" overwrite="yes"/>
 			<copy file="${base.path}/mss-sip-stack.properties" tofile="${tomcat7.home}/conf/mss-sip-stack.properties" />
 			<copy file="${base.path}/tomcat7-context-namespaceaware.xml" tofile="${tomcat7.home}/conf/context-namespaceaware.xml.bak"/>		
-			<echo message="release_path= ${release.path}"/>
-			<echo message="tomcat7_home= ${tomcat7.home}"/>
-			<echo message="dir=${base.path}/../.."/>
+			
 			<exec failonerror="true" executable="${mvn.executable}" dir="${base.path}/../..">
 				<arg line="clean buildnumber:create install -P set-git-hash  -DCATALINA_HOME=$[tomcat7.home} -P tomcat-7-distro"/>
 			</exec>
@@ -135,7 +135,7 @@
 			<copy tofile="${tomcat7.home}/webapps/Click2CallAsync.war">
 				<fileset dir="${base.path}/../../sip-servlets-examples/click-to-call-servlet3/target/" includes="Click2CallAsync.war" />
 			</copy>
-
+			
 			<exec failonerror="true" executable="${mvn.executable}" dir="${base.path}/../../sip-servlets-examples/websocket-b2bua">
 				<arg line="clean install -P set-git-hash" />
 			</exec>
@@ -148,18 +148,19 @@
 				<param name="management.deploy.folder" value="${tomcat7.home}/webapps" />
 			</antcall>
 			
-			<!--antcall target="build-restcomm-sip-load-balancer">
+			<antcall target="build-restcomm-sip-load-balancer">
 				<param name="mss.home" value="${tomcat7.home}"/>
-			</antcall-->
+			</antcall
 
 			<mkdir dir="${tomcat7.home}/docs" />
 			<antcall target="copy-documentation">
 				<param name="mss.home" value="${tomcat7.home}"/>
 			</antcall>
 			<antcall target="make-final-zip-tomcat7" />
-		</target>
+		</target> -->
 
 	<target name="release-tomcat8" depends="extract-tomcat8">
+		<echo message="release-tomcat8"/>
 		<copy file="TOMCAT-SIP-SERVLETS-README.txt" todir="${tomcat8.home}" />
 
 		<mkdir dir="${tomcat8.home}/conf/dars"/>
@@ -168,9 +169,9 @@
 		<copy file="${base.path}/server-tomcat-8.xml" tofile="${tomcat8.home}/conf/server.xml" overwrite="yes"/>
 		<copy file="${base.path}/mss-sip-stack.properties" tofile="${tomcat8.home}/conf/mss-sip-stack.properties" />
 		<copy file="${base.path}/tomcat8-context-namespaceaware.xml" tofile="${tomcat8.home}/conf/context-namespaceaware.xml.bak"/>		
-		
+		<!-- here -->
 		<exec failonerror="true" executable="${mvn.executable}" dir="${base.path}/../..">
-			<arg line="clean buildnumber:create install -P set-git-hash -DCATALINA_HOME=${tomcat8.home} -P tomcat-8-distro" />
+			<arg line="clean buildnumber:create install -P set-git-hash  -DCATALINA_HOME=$[tomcat8.home} -P tomcat-8-distro"/>
 		</exec>
 		
 		<exec failonerror="true" executable="${mvn.executable}" dir="${base.path}/../../sip-servlets-examples/click-to-call-servlet3">
@@ -180,7 +181,7 @@
 		<copy tofile="${tomcat8.home}/webapps/Click2CallAsync.war">
 			<fileset dir="${base.path}/../../sip-servlets-examples/click-to-call-servlet3/target/" includes="Click2CallAsync.war" />
 		</copy>
-
+		
 		<exec failonerror="true" executable="${mvn.executable}" dir="${base.path}/../../sip-servlets-examples/websocket-b2bua">
 			<arg line="clean install -P set-git-hash" />
 		</exec>
@@ -504,7 +505,7 @@
 	
 	<!-- zip binary distributions -->
 	
-	<target name="make-final-zip-tomcat7" depends="set-time-stamp">
+	<!-- <target name="make-final-zip-tomcat7" depends="set-time-stamp">
 		<fixcrlf srcdir="${tomcat7.home}/bin" includes="*.sh" eol="lf" eof="remove" />
 		<zip destfile="${base.path}/restcomm-sip-servlets-${mss.release.version}-apache-tomcat-${tomcat7.version}.zip" filesonly="false">
 			<zipfileset dir="${tomcat7.home}/bin" filemode="755" prefix="restcomm-sip-servlets-${mss.release.version}-apache-tomcat-${tomcat7.version}/bin">
@@ -515,7 +516,7 @@
 			</zipfileset>
 			<zipfileset dir="${tomcat7.home}" prefix="restcomm-sip-servlets-${mss.release.version}-apache-tomcat-${tomcat7.version}" excludes="**/bin/**"/>
 		</zip>
-	</target>
+	</target>-->
 
 	<target name="make-final-zip-tomcat8" depends="set-time-stamp">
 		<fixcrlf srcdir="${tomcat8.home}/bin" includes="*.sh" eol="lf" eof="remove" />
@@ -534,7 +535,7 @@
 		<tstamp>
 			<format property="time.stamp" pattern="yyMMddHHmm" />
 		</tstamp>
-	</target>
+	</target> 
 	
 	<!-- The cleanup target -->
 	
@@ -562,7 +563,7 @@
 		<unzip src="${mms.zip.path}" dest="${mss.home}/mobicents-media-server" />
 	</target>
 	
-	<available file="${tomcat7.distro.zip.path}" property="got.tomcat7" />
+	<!-- <available file="${tomcat7.distro.zip.path}" property="got.tomcat7" />
 	<target name="get-tomcat7" unless="got.tomcat7">
 		<echo>Downloading Apache Tomcat</echo>
 		<get dest="${tomcat7.distro.zip.path}" src="${tomcat7.download.url}"/>
@@ -571,7 +572,7 @@
 	<target name="extract-tomcat7" depends="get-tomcat7">
 		<delete dir="${tomcat7.home}" failonerror="true" />
 		<unzip src="${tomcat7.distro.zip.path}" dest="${tomcat7.home}/.." />
-	</target>
+	</target> -->
 
 	<available file="${tomcat8.distro.zip.path}" property="got.tomcat8" />
 	<target name="get-tomcat8" unless="got.tomcat8">
