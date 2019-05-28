@@ -89,8 +89,8 @@
 					<compilerArguments>
 						<g />
 					</compilerArguments>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -454,7 +454,7 @@
 		<repository>
 			<id>jboss-public-repository-group</id>
 			<name>JBoss Public Maven Repository Group</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public_jboss/</url>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
 			<layout>default</layout>
 			<releases>
 				<enabled>true</enabled>
