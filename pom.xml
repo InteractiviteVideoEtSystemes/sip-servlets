@@ -7,12 +7,12 @@
 	</parent>
 	<groupId>org.mobicents.servlet.sip</groupId>
 	<artifactId>sip-servlets-bootstrap</artifactId>
-	<version>3.0.0-SNAPSHOT</version>
+	<version>3.2.0-116</version>
 	<packaging>pom</packaging>
 
 	<name>Restcomm Sip Servlets</name>
 	<description>Restcomm SIP Servlets</description>
-	<url>https://github.com/RestComm/sip-servlets</url>
+	<url>https://github.com/RestComm/sip-servlets/</url>
 
 	<ciManagement>
 		<system>Jenkins</system>
@@ -93,9 +93,10 @@
 		<restcomm.cluster.version>[1.15, 1.16)</restcomm.cluster.version>
 		<restcomm.balancer.version>[2.0, 2.1)</restcomm.balancer.version>
 		<restcomm.jain.sip.ha.version>[1.5, 1.6)</restcomm.jain.sip.ha.version>
-		<restcomm.jain.sip.ext.version>[1.4, 1.5)</restcomm.jain.sip.ext.version>
+		<restcomm.jain.sip.ext.version>1.3.24</restcomm.jain.sip.ext.version>
 		<restcomm.commons.version>[2.0, 2.1)</restcomm.commons.version>
 		<tomcat-7.version>7.0.64</tomcat-7.version>
+		<tomcat-7.version>8.0.26</tomcat-7.version>
 		<metrics.version>3.1.0</metrics.version>
 		<slf4j.version>1.5.5</slf4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -106,7 +107,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.1</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -129,8 +130,8 @@
 					<compilerArguments>
 						<g />
 					</compilerArguments>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -301,7 +302,7 @@
 				</dependency>
 			</dependencies>
 		</profile-->
-		<profile>
+		<!-- <profile>
 			<id>tomcat-7</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -310,9 +311,9 @@
 				<module>containers/sip-servlets-catalina-7</module>
 				<module>containers/tomcat-7</module>
 			</modules>
-			<dependencies>
+			<dependencies> -->
 				<!-- j2ee dependencies -->
-				<dependency>
+				<!-- dependency>
 					<groupId>javax</groupId>
 					<artifactId>javaee-web-api</artifactId>
 					<version>6.0</version>
@@ -326,16 +327,16 @@
 				<module>containers/sip-servlets-catalina-7</module>
 				<module>containers/tomcat-7</module>
 			</modules>
-			<dependencies>
+			<dependencies> -->
 				<!-- j2ee dependencies -->
-				<dependency>
+				<!-- <dependency>
 					<groupId>javax</groupId>
 					<artifactId>javaee-web-api</artifactId>
 					<version>6.0</version>
 					<scope>provided</scope>
 				</dependency>
 			</dependencies>
-		</profile>
+		</profile> --> 
 		<profile>
 			<id>tomcat-8</id>
 			<activation>
@@ -365,8 +366,8 @@
 							<compilerArguments>
 								<g />
 							</compilerArguments>
-							<source>1.7</source>
-							<target>1.7</target>
+							<source>1.8</source>
+							<target>1.8</target>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -398,14 +399,14 @@
 							<compilerArguments>
 								<g />
 							</compilerArguments>
-							<source>1.7</source>
-							<target>1.7</target>
+							<source>1.8</source>
+							<target>1.8</target>
 						</configuration>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
-		<profile>
+		<!-- <profile>
 			<id>as7</id>
 			<modules>
 				<module>containers/sip-servlets-as7</module>
@@ -416,9 +417,9 @@
 				<version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>1.0.0.Final</version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>
 				<log4j.version>1.2.16</log4j.version>
 			</properties>
-			<dependencies>
+			<dependencies> -->
 				<!-- j2ee dependencies -->
-				<dependency>
+				<!-- <dependency>
 					<groupId>org.jboss.spec.javax.servlet</groupId>
 					<artifactId>jboss-servlet-api_3.0_spec</artifactId>
 					<version>${version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec}</version>
@@ -431,8 +432,8 @@
 			<modules>
 				<module>docs</module>
 			</modules>
-		</profile>
-		<profile>
+		</profile> -->
+		<!-- <profile>
 			<id>as8</id>
 			<modules>
 				<module>containers/sip-servlets-as8</module>
@@ -443,17 +444,17 @@
 				<version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>1.0.0.Final</version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>
 				<log4j.version>1.2.16</log4j.version>
 			</properties>
-			<dependencies>
+			<dependencies> -->
 				<!-- j2ee dependencies -->
-				<dependency>
+				<!-- <dependency>
 					<groupId>org.jboss.spec.javax.servlet</groupId>
 					<artifactId>jboss-servlet-api_3.0_spec</artifactId>
 					<version>${version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec}</version>
 					<scope>provided</scope>
 				</dependency>
 			</dependencies>
-		</profile>
-		<profile>
+		</profile> -->
+		<!-- <profile>
 			<id>as10</id>
 			<modules>
 				<module>containers/sip-servlets-as10</module>
@@ -464,16 +465,16 @@
 				<version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>1.0.0.Final</version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>
 				<log4j.version>1.2.16</log4j.version>
 			</properties>
-			<dependencies>
+			<dependencies> -->
 				<!-- j2ee dependencies -->
-				<dependency>
+				<!-- <dependency>
 					<groupId>org.jboss.spec.javax.servlet</groupId>
 					<artifactId>jboss-servlet-api_3.0_spec</artifactId>
 					<version>${version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec}</version>
 					<scope>provided</scope>
 				</dependency>
 			</dependencies>
-		</profile>
+		</profile> -->
 	</profiles>
 	<!-- repositories -->
 	<repositories>

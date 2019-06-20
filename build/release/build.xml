@@ -5,7 +5,7 @@
 	<property name="base.path" location="${ant.file.restcomm.sipservlets.release}/.." />
 	<property name="docs.stage.dir" location="${ant.file.restcomm.sipservlets.release}/../documentation" />
 	
-	<!--property name="mss.release.version" value="3.0.0-SNAPSHOT" /-->
+	<property name="mss.release.version" value="3.2.0-116" />
 	<property name="mss.release.configurations" value="all,default" />
 	<property name="mss.release.configurations.jboss5" value="all,default" />
 	<property name="mss.release.configurations.jboss5.excluded" value="minimal,standard,web" />
@@ -17,7 +17,7 @@
 	<property name="jboss-5-jdk6.download.url" value="http://downloads.sourceforge.net/project/jboss/JBoss/JBoss-${jboss-5.version}/jboss-${jboss-5.version}-jdk6.zip" />
 	
 	<property name="tomcat.version" value="6.0.35" />
-	<property name="tomcat7.version" value="7.0.64" />
+	<!-- <property name="tomcat7.version" value="7.0.64" /> -->
 	<property name="tomcat8.version" value="8.0.26" />
 	<property name="tomcat.download.url" value="http://archive.apache.org/dist/tomcat/tomcat-6/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip" />
 	<property name="tomcat7.download.url" value="http://archive.apache.org/dist/tomcat/tomcat-7/v${tomcat7.version}/bin/apache-tomcat-${tomcat7.version}.zip" />
@@ -75,7 +75,7 @@
 	<!-- Release target -->
 	
 	<!--target name="release" depends="clean,build-documentation,release-tomcat7,release-tomcat,release-jboss-5-jdk6,make-src-zip" /-->
-	<target name="release" depends="clean,build-documentation,release-tomcat7,release-tomcat8,make-src-zip" />
+	<target name="release" depends="clean,build-documentation,release-tomcat8,make-src-zip" />
 	<target name="release-MSS-4" depends="clean,build-documentation,release-tomcat8,make-src-zip" />
 	
 	<!-- Tomcat version -->
@@ -112,7 +112,7 @@
 		<antcall target="make-final-zip-tomcat" />
 	</target-->
 	
-	<target name="release-tomcat7" depends="extract-tomcat7">
+	<!-- <target name="release-tomcat7" depends="extract-tomcat7">
 			<copy file="TOMCAT-SIP-SERVLETS-README.txt" todir="${tomcat7.home}" />
 			
 			<mkdir dir="${tomcat7.home}/conf/dars"/>
@@ -144,18 +144,18 @@
 			
 			<antcall target="deploy-mgmnt">
 				<param name="management.deploy.folder" value="${tomcat7.home}/webapps" />
-			</antcall>
+			</antcall> -->
 			
 			<!--antcall target="build-restcomm-sip-load-balancer">
 				<param name="mss.home" value="${tomcat7.home}"/>
 			</antcall-->
 
-			<mkdir dir="${tomcat7.home}/docs" />
+			<!-- <mkdir dir="${tomcat7.home}/docs" />
 			<antcall target="copy-documentation">
 				<param name="mss.home" value="${tomcat7.home}"/>
 			</antcall>
 			<antcall target="make-final-zip-tomcat7" />
-		</target>
+		</target -->
 
 	<target name="release-tomcat8" depends="extract-tomcat8">
 		<copy file="TOMCAT-SIP-SERVLETS-README.txt" todir="${tomcat8.home}" />
@@ -203,7 +203,7 @@
 	</target>
 	
 	<!-- JBoss 5 jdk6 version -->
-	<!--target name="release-jboss-5-jdk6" depends="extract-jboss-5-jdk6">
+	<!-- <target name="release-jboss-5-jdk6" depends="extract-jboss-5-jdk6">
 		<for delimiter="," param="jboss.config" list="${mss.release.configurations.jboss5}">
 			<sequential>
 				<ant dir="${base.path}" antfile="build.xml" target="release-jboss-5-node">
@@ -251,9 +251,9 @@
 		
 		<antcall target="make-final-zip-jboss-5-jdk6" />
 		<antcall target="make-final-zip-jboss-5-jdk6-lgpl" />
-	</target>	
+	</target>	 -->
 	
-	<target name="release-jboss-5-node">
+<!-- 	<target name="release-jboss-5-node">
 		<echo message="MSS_HOME= ${mss.home}"/>
 		<mkdir dir="${mss.home}/server/${jboss.config}/conf/dars" />
 		<copy file="${base.path}/dars/click2call-dar.properties" overwrite="true" tofile="${mss.home}/server/${jboss.config}/conf/dars/mobicents-dar.properties" />
@@ -302,8 +302,8 @@
 		</antcall>
 		
 	</target>
-	
-	<target name="release-jboss-5-node-ha" if="ha.capable">
+	 -->
+	<!-- <target name="release-jboss-5-node-ha" if="ha.capable">
 		<echo message="MSS_HOME= ${mss.home}"/>
 		<copy overwrite="true" file="${base.path}/mss-sip-stack-jboss-5-all.properties" tofile="${mss.home}/server/${jboss.config}/conf/mss-sip-stack.properties" />
 		<copy overwrite="true" file="${base.path}/../../sip-servlets-impl/docs/jboss5/failover-server-jboss-5.xml" tofile="${mss.home}/server/${jboss.config}/deploy/jbossweb.sar/server.xml" />
@@ -322,7 +322,7 @@
 		</copy>
 	
 		<copy overwrite="true" file="${base.path}/../../sip-servlets-examples/click2call-distributable/click2call-distributable-dar.properties" tofile="${mss.home}/server/${jboss.config}/conf/dars/mobicents-dar.properties"/>			
-	</target-->
+	</target> -->
 	
 	<!-- MSS Management Console -->
 	
@@ -432,7 +432,7 @@
 	
 	<!-- Download dependencies from SourceForge -->
 	
-	<target name="build-restcomm-diameter-jboss-5" depends="get-restcomm-diameter-jboss-5">		
+	<!-- <target name="build-restcomm-diameter-jboss-5" depends="get-restcomm-diameter-jboss-5">		
 		<unzip dest="${mss.home}/server/${jboss.config}/deploy/${diameter-jboss-5.name}" src="${diameter-jboss-5.distro.path}"/>
 		<copy overwrite="true" file="${base.path}/jdiameter-config.xml" tofile="${mss.home}/server/${jboss.config}/deploy/${diameter-jboss-5.name}/config/jdiameter-config.xml" />
 	</target>
@@ -441,7 +441,7 @@
 		<target name="get-restcomm-diameter-jboss-5" unless="got.mobicents-diameter-jboss-5">
 			<echo>Downloading Mobicents Diameter JBoss5</echo>
 				<get dest="${diameter-jboss-5.distro.path}" src="${diameter-jboss-5.download.url}" />
-		</target>
+		</target> -->
 	
 	<!-- Fetch and build documentation -->
 	<target name="build-documentation" >
@@ -502,7 +502,7 @@
 	
 	<!-- zip binary distributions -->
 	
-	<target name="make-final-zip-tomcat7" depends="set-time-stamp">
+	<!-- <target name="make-final-zip-tomcat7" depends="set-time-stamp">
 		<fixcrlf srcdir="${tomcat7.home}/bin" includes="*.sh" eol="lf" eof="remove" />
 		<zip destfile="${base.path}/restcomm-sip-servlets-${mss.release.version}-apache-tomcat-${tomcat7.version}.zip" filesonly="false">
 			<zipfileset dir="${tomcat7.home}/bin" filemode="755" prefix="restcomm-sip-servlets-${mss.release.version}-apache-tomcat-${tomcat7.version}/bin">
@@ -513,7 +513,7 @@
 			</zipfileset>
 			<zipfileset dir="${tomcat7.home}" prefix="restcomm-sip-servlets-${mss.release.version}-apache-tomcat-${tomcat7.version}" excludes="**/bin/**"/>
 		</zip>
-	</target>
+	</target> -->
 
 	<target name="make-final-zip-tomcat8" depends="set-time-stamp">
 		<fixcrlf srcdir="${tomcat8.home}/bin" includes="*.sh" eol="lf" eof="remove" />
@@ -560,7 +560,7 @@
 		<unzip src="${mms.zip.path}" dest="${mss.home}/mobicents-media-server" />
 	</target>
 	
-	<available file="${tomcat7.distro.zip.path}" property="got.tomcat7" />
+	<!-- <available file="${tomcat7.distro.zip.path}" property="got.tomcat7" />
 	<target name="get-tomcat7" unless="got.tomcat7">
 		<echo>Downloading Apache Tomcat</echo>
 		<get dest="${tomcat7.distro.zip.path}" src="${tomcat7.download.url}"/>
@@ -569,7 +569,7 @@
 	<target name="extract-tomcat7" depends="get-tomcat7">
 		<delete dir="${tomcat7.home}" failonerror="true" />
 		<unzip src="${tomcat7.distro.zip.path}" dest="${tomcat7.home}/.." />
-	</target>
+	</target> -->
 
 	<available file="${tomcat8.distro.zip.path}" property="got.tomcat8" />
 	<target name="get-tomcat8" unless="got.tomcat8">
