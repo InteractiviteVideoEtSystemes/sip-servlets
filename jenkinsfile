@@ -80,7 +80,7 @@ pipeline {
     }
     steps {
       slackSuccessInstalled()
-      emailext(attachmentsPattern: 'vrn.html', body: 'Livraison de <strong>kamailioconfig $BRANCH_NAME</strong> : <br/><br/>       Lien GIT : <a href="http://git.ives.fr/plateformes/kamailioconfig/tree/$BRANCH_NAME">http://git.ives.fr/plateformes/kamailioconf/tree/$BRANCH_NAME</a><br/><br/> Lien du Build : <a href="$RUN_DISPLAY_URL">$RUN_DISPLAY_URL</a>       <br/><br/>       Cordialement,<br/>       Jenkins', mimeType: 'text/html', replyTo: 'devplateforme@ives.fr', subject: '[Server RestComm] Livraison $BRANCH_NAME', recipientProviders: [requestor()], to: "jenkins@ives.fr")
+      emailext(attachmentsPattern: 'vrn.html', body: 'Livraison de <strong>RestComm SIP SERVLETS $BRANCH_NAME</strong> : <br/><br/>       Lien GIT : <a href="https://github.com/InteractiviteVideoEtSystemes/sip-servlets.git$BRANCH_NAME">https://github.com/InteractiviteVideoEtSystemes/sip-servlets/tree/$BRANCH_NAME</a><br/><br/> Lien du Build : <a href="$RUN_DISPLAY_URL">$RUN_DISPLAY_URL</a>       <br/><br/>       Cordialement,<br/>       Jenkins', mimeType: 'text/html', replyTo: 'devplateforme@ives.fr', subject: '[Server RestComm] Livraison $BRANCH_NAME', recipientProviders: [requestor()], to: "jenkins@ives.fr")
       archiveArtifacts(artifacts: '*.rpm,vrn.html', onlyIfSuccessful: true)
       script{
         SLACKALREADYSENT=true
@@ -106,16 +106,16 @@ pipeline {
 
 void slackFail(e)
 {
-  slackSend(message: ":x: *BUILD FAIL kamailioconfig $BRANCH_NAME* : ```${e}``` \n\n Lien du Build : <$RUN_DISPLAY_URL|JENKINS-#$BUILD_NUMBER> \n Cordialement, Jenkins", baseUrl: 'https://ives-workspace.slack.com/services/hooks/jenkins-ci/', channel: 'jenkins', color: 'danger', teamDomain: 'ives-workspace.slack.com', token: 'gcwQATpI47iPCfTcPCcdR4ZR')
+  slackSend(message: ":x: *BUILD FAIL RestComm SIP SERVLETS $BRANCH_NAME* : ```${e}``` \n\n Lien du Build : <$RUN_DISPLAY_URL|JENKINS-#$BUILD_NUMBER> \n Cordialement, Jenkins", baseUrl: 'https://ives-workspace.slack.com/services/hooks/jenkins-ci/', channel: 'jenkins', color: 'danger', teamDomain: 'ives-workspace.slack.com', token: 'gcwQATpI47iPCfTcPCcdR4ZR')
 }
 
 void slackSuccess()
 {
-  slackSend(message: ":white_check_mark:  *BUILD SUCCESS kamailioconfig $BRANCH_NAME* : \n\n Lien du Build : <$RUN_DISPLAY_URL|JENKINS-#$BUILD_NUMBER> \n \n Cordialement, Jenkins", baseUrl: 'https://ives-workspace.slack.com/services/hooks/jenkins-ci/', channel: 'jenkins', color: 'good', teamDomain: 'ives-workspace.slack.com', token: 'gcwQATpI47iPCfTcPCcdR4ZR')
+  slackSend(message: ":white_check_mark:  *BUILD SUCCESS RestComm SIP SERVLETS $BRANCH_NAME* : \n\n Lien du Build : <$RUN_DISPLAY_URL|JENKINS-#$BUILD_NUMBER> \n \n Cordialement, Jenkins", baseUrl: 'https://ives-workspace.slack.com/services/hooks/jenkins-ci/', channel: 'jenkins', color: 'good', teamDomain: 'ives-workspace.slack.com', token: 'gcwQATpI47iPCfTcPCcdR4ZR')
 }
 
 void slackSuccessInstalled()
 {
-  slackSend(message: ":white_check_mark: *BUILD SUCCESS kamailioconfig $BRANCH_NAME* : \n\n Lien du Build : <$RUN_DISPLAY_URL|JENKINS-#$BUILD_NUMBER> \n \n Cordialement, Jenkins", baseUrl: 'https://ives-workspace.slack.com/services/hooks/jenkins-ci/', channel: 'jenkins', color: 'good', teamDomain: 'ives-workspace.slack.com', token: 'gcwQATpI47iPCfTcPCcdR4ZR')
+  slackSend(message: ":white_check_mark: *BUILD SUCCESS RestComm SIP SERVLETSs $BRANCH_NAME* : \n\n Lien du Build : <$RUN_DISPLAY_URL|JENKINS-#$BUILD_NUMBER> \n \n Cordialement, Jenkins", baseUrl: 'https://ives-workspace.slack.com/services/hooks/jenkins-ci/', channel: 'jenkins', color: 'good', teamDomain: 'ives-workspace.slack.com', token: 'gcwQATpI47iPCfTcPCcdR4ZR')
 
 }
