@@ -20,6 +20,7 @@ function create_rpm
         	toarchive=$3
     	fi
 	
+ 
 #Cree l'environnement de creation de package
 #Creation des macros rpmbuild
     rm -f ~/.rpmmacros
@@ -48,20 +49,23 @@ function create_rpm
     mkdir -p RPMS/i386
     mkdir -p RPMS/i686
     mkdir -p RPMS/i586
+
 #Recuperation de la description du package 
     cd -
     cp ${PROJET}.spec $HOME/rpmbuild/SPECS 
+    cp -r . $HOME/rpmbuild/SOURCES
     cd $HOME/rpmbuild/
     #Cree le package
     if [[ -z $2 || $2 -ne nosign ]] 
 	then
 		 
 		rpmbuild -bb --sign $HOME/rpmbuild/SPECS/${PROJET}.spec
-    else  
-		
+    else  	
 		rpmbuild -bb  $HOME/rpmbuild/SPECS/${PROJET}.spec
 		
-    fi	
+    fi
+
+   	
     #Recuperation du rpm
     cd -
     mv $HOME/rpmbuild/RPMS/noarch/*.rpm $PWD/.
@@ -90,17 +94,15 @@ function copy_rpmInstall
   mkdir -p $DESTDIR/bin
   mkdir -p $DESTDIR/lib
   mkdir -p $DESTDIR/logs
-  mkdir -p $DESTDIR/webappas
+  mkdir -p $DESTDIR/webapps
   mkdir -p $DESTDIR/work
 
-  cd $PROJET
+  #cd $PROJET
 
-  cp -rp conf/* $DESTDIR/conf
-  cp -rp bin/* $DESTDIR/bin
-  cp -rp lib/* $DESTDIR/lib
-  cp -rp logs/* $DESTDIR/logs
-  cp -rp webapps/* $DESTDIR/webapps
-  cp -rp work/* $DESTDIR/work
+  cp -rp $HOME/rpmbuild/SOURCES/${VERSION}/restcommserver/conf/* $DESTDIR/conf
+  cp -rp $HOME/rpmbuild/SOURCES/${VERSION}/restcommserver/bin/* $DESTDIR/bin
+  cp -rp $HOME/rpmbuild/SOURCES/${VERSION}/restcommserver/lib/* $DESTDIR/lib
+  cp -rp $HOME/rpmbuild/SOURCES/${VERSION}/restcommserver/webapps/* $DESTDIR/webapps
     
 
 }
