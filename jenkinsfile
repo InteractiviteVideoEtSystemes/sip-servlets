@@ -118,3 +118,4 @@ void slackSuccessInstalled()
 {
   slackSend(message: ":white_check_mark: *BUILD SUCCESS kamailioconfig $BRANCH_NAME* : \n\n Lien du Build : <$RUN_DISPLAY_URL|JENKINS-#$BUILD_NUMBER> \n \n Cordialement, Jenkins", baseUrl: 'https://ives-workspace.slack.com/services/hooks/jenkins-ci/', channel: 'jenkins', color: 'good', teamDomain: 'ives-workspace.slack.com', token: 'gcwQATpI47iPCfTcPCcdR4ZR')
 
+}
