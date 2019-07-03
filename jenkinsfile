@@ -74,19 +74,19 @@ pipeline {
       }
     }
   }
-  #stage('E-mail and archive') {
-  #  when {
-  #    buildingTag()
-  #  }
-  #  steps {
-  #    slackSuccessInstalled()
-  #    emailext(attachmentsPattern: 'vrn.html', body: 'Livraison de <strong>kamailioconfig $BRANCH_NAME</strong> : <br/><br/>       Lien GIT : <a href="http://git.ives.fr/plateformes/kamailioconfig/tree/$BRANCH_NAME">http://git.ives.fr/plateformes/kamailioconf/tree/$BRANCH_NAME</a><br/><br/> Lien du Build : <a href="$RUN_DISPLAY_URL">$RUN_DISPLAY_URL</a>       <br/><br/>       Cordialement,<br/>       Jenkins', mimeType: 'text/html', replyTo: 'devplateforme@ives.fr', subject: '[Server RestComm] Livraison $BRANCH_NAME', recipientProviders: [requestor()], to: "jenkins@ives.fr")
-   #   archiveArtifacts(artifacts: '*.rpm,vrn.html', onlyIfSuccessful: true)
-   #   script{
-   #     SLACKALREADYSENT=true
-   #   }
-   # }
- # }
+  stage('E-mail and archive') {
+    when {
+      buildingTag()
+    }
+    steps {
+      slackSuccessInstalled()
+      emailext(attachmentsPattern: 'vrn.html', body: 'Livraison de <strong>kamailioconfig $BRANCH_NAME</strong> : <br/><br/>       Lien GIT : <a href="http://git.ives.fr/plateformes/kamailioconfig/tree/$BRANCH_NAME">http://git.ives.fr/plateformes/kamailioconf/tree/$BRANCH_NAME</a><br/><br/> Lien du Build : <a href="$RUN_DISPLAY_URL">$RUN_DISPLAY_URL</a>       <br/><br/>       Cordialement,<br/>       Jenkins', mimeType: 'text/html', replyTo: 'devplateforme@ives.fr', subject: '[Server RestComm] Livraison $BRANCH_NAME', recipientProviders: [requestor()], to: "jenkins@ives.fr")
+      archiveArtifacts(artifacts: '*.rpm,vrn.html', onlyIfSuccessful: true)
+      script{
+        SLACKALREADYSENT=true
+      }
+    }
+ }
 }
   post {
      failure {
