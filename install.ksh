@@ -25,18 +25,18 @@ function create_rpm
 #Creation des macros rpmbuild
     rm -f ~/.rpmmacros
     touch ~/.rpmmacros
-    echo "%_topdir" $HOME"/rpmbuild" >> ~/.rpmmacros
+    echo "%_topdir ./rpmbuild" >> ~/.rpmmacros
     echo "%debug_package %{nil}" >> ~/.rpmmacros
     echo "%_tmppath %{_topdir}/TMP" >> ~/.rpmmacros
     echo "%_signature gpg" >> ~/.rpmmacros
     echo "%_gpg_name IVeSkey" >> ~/.rpmmacros
-    echo "%_gpg_path" $HOME"/rpmbuild/gnupg" >> ~/.rpmmacros
+    echo "%_gpg_path ./rpmbuild/gnupg" >> ~/.rpmmacros
     echo "%vendor IVeS" >> ~/.rpmmacros
     echo "%gitsource "$toarchive >> ~/.rpmmacros
 	
 #Import de la clef gpg IVeS
-    mkdir -p $HOME/rpmbuild
-    cd $HOME/rpmbuild
+    mkdir -p ./rpmbuild
+    cd ./rpmbuild
     svn export http://svn.ives.fr/svn-libs-dev/gnupg
     mkdir -p SOURCES
     mkdir -p SPECS
@@ -51,24 +51,24 @@ function create_rpm
     mkdir -p RPMS/i586
  
     cd -
-    cp ${PROJET}.spec $HOME/rpmbuild/SPECS 
-    cp -r . $HOME/rpmbuild/SOURCES
-    cd $HOME/rpmbuild/
+    cp ${PROJET}.spec ./rpmbuild/SPECS 
+    cp -r . ./rpmbuild/SOURCES
+    cd ./rpmbuild/
 	
     #Cree le package
     if [[ -z $2 || $2 -ne nosign ]] 
 	then
 		 
-		rpmbuild -bb --sign $HOME/rpmbuild/SPECS/${PROJET}.spec
+		rpmbuild -bb --sign ./rpmbuild/SPECS/${PROJET}.spec
     else  	
-		rpmbuild -bb  $HOME/rpmbuild/SPECS/${PROJET}.spec
+		rpmbuild -bb  ./rpmbuild/SPECS/${PROJET}.spec
 		
     fi
 
    	
     #Recuperation du rpm
     cd -
-    mv $HOME/rpmbuild/RPMS/noarch/*.rpm $PWD/.
+    mv ./rpmbuild/RPMS/noarch/*.rpm $PWD/.
   clean
 }
 
@@ -99,10 +99,10 @@ function copy_rpmInstall
 
   #cd $PROJET
 
-  cp -rp $HOME/rpmbuild/SOURCES/${VERSION}/restcommserver/conf/* $DESTDIR/conf
-  cp -rp $HOME/rpmbuild/SOURCES/${VERSION}/restcommserver/bin/* $DESTDIR/bin
-  cp -rp $HOME/rpmbuild/SOURCES/${VERSION}/restcommserver/lib/* $DESTDIR/lib
-  cp -rp $HOME/rpmbuild/SOURCES/${VERSION}/restcommserver/webapps/* $DESTDIR/webapps
+  cp -rp ./rpmbuild/SOURCES/${VERSION}/restcommserver/conf/* $DESTDIR/conf
+  cp -rp ./rpmbuild/SOURCES/${VERSION}/restcommserver/bin/* $DESTDIR/bin
+  cp -rp ./rpmbuild/SOURCES/${VERSION}/restcommserver/lib/* $DESTDIR/lib
+  cp -rp ./rpmbuild/SOURCES/${VERSION}/restcommserver/webapps/* $DESTDIR/webapps
     
 
 }
@@ -112,7 +112,7 @@ function clean
 {
   	# On efface les liens ainsi que le package precedemment créé
   	echo Effacement des fichiers et liens gnupg rpmbuild ${PROJET}.rpm ${TEMPDIR}/${PROJET}
-  	rm -rf $HOME/rpmbuild/SPECS/${PROJET}.spec $HOME/rpmbuild/gnupg $HOME/rpmbuild/BUILD/${PROJET}
+  	rm -rf ./rpmbuild/SPECS/${PROJET}.spec ./rpmbuild/gnupg ./rpmbuild/BUILD/${PROJET}
 }
 
 case $1 in
