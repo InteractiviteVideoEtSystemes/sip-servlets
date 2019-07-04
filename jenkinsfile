@@ -35,7 +35,7 @@ pipeline {
         mkdir -p rpmbuild/RPMS/i586
 
         cp ${PROJET}.spec ./rpmbuild/SPECS/${PROJET}.spec
-		cp -r . ./rpmbuild/SOURCES
+		cp -r * ./rpmbuild/SOURCES
         rm ~/.rpmmacros
         touch ~/.rpmmacros
         echo "%_topdir" $WORKSPACE"/rpmbuild" >> ~/.rpmmacros
