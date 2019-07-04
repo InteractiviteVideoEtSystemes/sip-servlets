@@ -35,7 +35,18 @@ pipeline {
         mkdir -p rpmbuild/RPMS/i586
 
         cp ${PROJET}.spec ./rpmbuild/SPECS/${PROJET}.spec
-		cp -r * ./rpmbuild/SOURCES
+		cp -r . ./rpmbuild/SOURCES/build
+		cp -r . ./rpmbuild/SOURCES/containers
+		cp -r . ./rpmbuild/SOURCES/docs
+		cp -r . ./rpmbuild/SOURCES/management
+		cp -r . ./rpmbuild/SOURCES/sip-*
+		cp -r . ./rpmbuild/SOURCES/install.ksh
+		cp -r . ./rpmbuild/SOURCES/install-script.sh
+		cp -r . ./rpmbuild/SOURCES/jenkinsfile
+		cp -r . ./rpmbuild/SOURCES/pom.xml
+		cp -r . ./rpmbuild/SOURCES/post-install-script.sh
+		cp -r . ./rpmbuild/SOURCES/restcommserver.spec
+		
         rm ~/.rpmmacros
         touch ~/.rpmmacros
         echo "%_topdir" $WORKSPACE"/rpmbuild" >> ~/.rpmmacros
