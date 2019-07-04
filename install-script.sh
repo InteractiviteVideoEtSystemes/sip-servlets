@@ -7,11 +7,11 @@ projet=restcommserver
 echo 'Unzip Tomcat server sip'
 
 
-unzip $dir_extrac/build/release/$sipserver.zip -d ./rpmbuild/BUILD
+unzip $dir_extrac/build/release/$sipserver.zip -d ../BUILD
 echo -e "\n"
 
 echo 'Rename server sip '
-mv ./rpmbuild/BUILD/$sipserver ./rpmbuild/BUILD/$projet
+mv ../BUILD/$sipserver ../BUILD/$projet
 echo -e "\n"
 mkdir -p $2$DESTDIR/  
 mkdir -p $2$DESTDIR/$projet/conf
@@ -23,12 +23,11 @@ mkdir -p $2$DESTDIR/$projet/work
 mkdir -p $2$DESTDIR/$projet/docs
 
 cp -rp $dir_extrac/post-install-script.sh $2$DESTDIR/$projet
-cd ../..
-cp -rp ./rpmbuild/BUILD/$projet/conf/* $2$DESTDIR/$projet/conf
-cp -rp ./rpmbuild/BUILD/$projet/bin/* $2$DESTDIR/$projet/bin
-cp -rp ./rpmbuild/BUILD/$projet/lib/* $2$DESTDIR/$projet/lib
-cp -rp ./rpmbuild/BUILD/$projet/webapps/* $2$DESTDIR/$projet/webapps
-cp -rp ./rpmbuild/BUILD/$projet/docs/* $2$DESTDIR/$projet/docs
+cp -rp ../BUILD/$projet/conf/* $2$DESTDIR/$projet/conf
+cp -rp ../BUILD/$projet/bin/* $2$DESTDIR/$projet/bin
+cp -rp ../BUILD/$projet/lib/* $2$DESTDIR/$projet/lib
+cp -rp ../BUILD/$projet/webapps/* $2$DESTDIR/$projet/webapps
+cp -rp ../BUILD/$projet/docs/* $2$DESTDIR/$projet/docs
 
 
 echo 'Charge user tomcat'
