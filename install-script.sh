@@ -1,10 +1,10 @@
 #!/bin/sh
 sipserver=restcomm-sip-servlets-3.2.0-116-apache-tomcat-8.0.26
 version=3.2.0
-dir_extrac=~/rpmbuild/SOURCES
+dir_extrac=.
 DESTDIR=/opt/tomcat/$version
 projet=restcommserver
-echo 'Unzip Tomcat server sip on /opt/tomcat '
+echo 'Unzip Tomcat server sip'
 
 
 unzip $dir_extrac/build/release/$sipserver.zip -d ./rpmbuild/BUILD
@@ -23,6 +23,7 @@ mkdir -p $2$DESTDIR/$projet/work
 mkdir -p $2$DESTDIR/$projet/docs
 
 cp -rp $dir_extrac/post-install-script.sh $2$DESTDIR/$projet
+cd ../..
 cp -rp ./rpmbuild/BUILD/$projet/conf/* $2$DESTDIR/$projet/conf
 cp -rp ./rpmbuild/BUILD/$projet/bin/* $2$DESTDIR/$projet/bin
 cp -rp ./rpmbuild/BUILD/$projet/lib/* $2$DESTDIR/$projet/lib
