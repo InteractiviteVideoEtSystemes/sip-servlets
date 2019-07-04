@@ -35,7 +35,7 @@ echo $RPM_BUILD_ROOT
 %build 
 echo "Build" 
 cd ../SOURCES/build/release
-ant release-tomcat8 
+ant release
 
 %install
 echo "Install"
