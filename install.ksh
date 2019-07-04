@@ -49,12 +49,12 @@ function create_rpm
     mkdir -p RPMS/i386
     mkdir -p RPMS/i686
     mkdir -p RPMS/i586
-
-#Recuperation de la description du package 
+ 
     cd -
     cp ${PROJET}.spec $HOME/rpmbuild/SPECS 
     cp -r . $HOME/rpmbuild/SOURCES
     cd $HOME/rpmbuild/
+	
     #Cree le package
     if [[ -z $2 || $2 -ne nosign ]] 
 	then
