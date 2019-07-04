@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ksh
 VERSION="3.2.0-116"
 PROJET=restcommserver
 DESTDIR=/opt/tomcat/${VERSION}/${PROJET}
