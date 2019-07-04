@@ -11,7 +11,7 @@ unzip $dir_extrac/build/release/$sipserver.zip -d ./rpmbuild/BUILD
 echo -e "\n"
 
 echo 'Rename server sip '
-mv ./rpmbuild/BUILD/$sipserver $HOME/rpmbuild/BUILD/$projet
+mv ./rpmbuild/BUILD/$sipserver ./rpmbuild/BUILD/$projet
 echo -e "\n"
 mkdir -p $2$DESTDIR/  
 mkdir -p $2$DESTDIR/$projet/conf
