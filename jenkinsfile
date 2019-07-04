@@ -35,17 +35,18 @@ pipeline {
         mkdir -p rpmbuild/RPMS/i586
 
         cp ${PROJET}.spec ./rpmbuild/SPECS/${PROJET}.spec
-		cp -r . ./rpmbuild/SOURCES/build
-		cp -r . ./rpmbuild/SOURCES/containers
-		cp -r . ./rpmbuild/SOURCES/docs
-		cp -r . ./rpmbuild/SOURCES/management
-		cp -r . ./rpmbuild/SOURCES/sip-*
-		cp -r . ./rpmbuild/SOURCES/install.ksh
-		cp -r . ./rpmbuild/SOURCES/install-script.sh
-		cp -r . ./rpmbuild/SOURCES/jenkinsfile
-		cp -r . ./rpmbuild/SOURCES/pom.xml
-		cp -r . ./rpmbuild/SOURCES/post-install-script.sh
-		cp -r . ./rpmbuild/SOURCES/restcommserver.spec
+		
+		cp -r build ./rpmbuild/SOURCES
+		cp -r containers ./rpmbuild/SOURCES
+		cp -r docs ./rpmbuild/SOURCES
+		cp -r management ./rpmbuild/SOURCES
+		cp -r sip-* ./rpmbuild/SOURCES
+		cp  install.ksh ./rpmbuild/SOURCES
+		cp  install-script.sh ./rpmbuild/SOURCES
+		cp  jenkinsfile ./rpmbuild/SOURCES
+		cp  pom.xml ./rpmbuild/SOURCES
+		cp  post-install-script.sh ./rpmbuild/SOURCES
+		cp  restcommserver.spec ./rpmbuild/SOURCES
 		
         rm ~/.rpmmacros
         touch ~/.rpmmacros
