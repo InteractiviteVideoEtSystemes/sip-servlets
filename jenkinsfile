@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Build RPM') {
       steps {
-
+		chmod 777 install.ksh 
         sh "./install.ksh export"
         script{
           def props = readJSON file:'build.properties';
