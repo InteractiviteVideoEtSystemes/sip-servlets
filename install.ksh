@@ -96,7 +96,7 @@ function copy_rpmInstall
   mkdir -p $DESTDIR/logs
   mkdir -p $DESTDIR/webapps
   mkdir -p $DESTDIR/work
-
+  mkdir -p $DESTDIR/temp
   #cd $PROJET
 
   cp -rp ./rpmbuild/SOURCES/${VERSION}/restcommserver/conf/* $DESTDIR/conf

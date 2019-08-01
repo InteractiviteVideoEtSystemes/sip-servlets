@@ -63,8 +63,10 @@ sed -i -e 's/\r$//' post-install-script.sh
 /opt/tomcat/%version/restcommserver/work/
 /opt/tomcat/%version/restcommserver/conf
 /opt/tomcat/%version/restcommserver/docs/*
+/opt/tomcat/%version/restcommserver/temp/
 %docdir /opt/tomcat/%version/restcommserver/docs/* 
 %config(noreplace) /opt/tomcat/%version/restcommserver/conf/server.xml
+%config(noreplace) /opt/tomcat/%version/restcommserver/conf/dars/mobicents-dar.properties
 
 
 %changelog
